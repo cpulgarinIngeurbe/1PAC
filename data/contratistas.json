@@ -1,0 +1,22 @@
+{
+  "contratistas": [
+    {
+      "id": "CONTR-001",
+      "nombre": "Constructora ABC",
+      "email": "contact@abc.co",
+      "estado": "activo"
+    },
+    {
+      "id": "CONTR-002",
+      "nombre": "XYZ Instalaciones",
+      "email": "contact@xyz.co",
+      "estado": "activo"
+    },
+    {
+      "id": "CONTR-003",
+      "nombre": "LMN Acabados",
+      "email": "contact@lmn.co",
+      "estado": "activo"
+    }
+  ]
+}

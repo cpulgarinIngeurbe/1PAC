@@ -1,0 +1,27 @@
+{
+  "id": "proyecto-torre-1",
+  "nombre": "Proyecto Torre 1 - Ingeurbe",
+  "descripcion": "Construcción de torre residencial 15 pisos",
+  "fecha_inicio": "2026-07-20",
+  "fecha_fin": "2026-08-30",
+  "actividades": [
+    {
+      "id": "ACT-001",
+      "nombre": "Mampostería fachada Torre 1",
+      "descripcion": "Levantamiento de muros y mampostería en fachada",
+      "tipo_unidad": "pisos",
+      "cantidad_total": 15,
+      "fecha_inicio": "2026-07-20",
+      "fecha_fin": "2026-08-30"
+    },
+    {
+      "id": "ACT-002",
+      "nombre": "Instalaciones eléctricas piso 1",
+      "descripcion": "Canalizaciones y cableado de primera fase",
+      "tipo_unidad": "unidades",
+      "cantidad_total": 1,
+      "fecha_inicio": "2026-07-24",
+      "fecha_fin": "2026-07-30"
+    }
+  ]
+}

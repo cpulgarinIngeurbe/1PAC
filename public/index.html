@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1PAC - Ingeurbe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body, #root { min-height: 100vh; background: #f6f7f2; }
+    body { font-family: 'Roboto', system-ui, sans-serif; color: #1c1d18; }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:20px;">
+      <div style="width:72px;height:72px;border-radius:18px;background:linear-gradient(160deg,#a2c617 0%,#758b29 100%);display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:900;color:#151708;">1</div>
+      <h1 style="font-size:32px;font-weight:800;color:#1c1d18;text-align:center;">1PAC Ingeurbe</h1>
+      <p style="color:#8e8d85;text-align:center;max-width:400px;">Cargando sistema de reportería...</p>
+      <div style="width:26px;height:26px;border:3px solid #e6e7df;border-top-color:#a2c617;border-radius:50%;animation:spin 0.75s linear infinite;"></div>
+      <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+    </div>
+  </div>
+
+  <script type="text/babel">
+    window.THEME = {
+      colors: {
+        primary: '#a2c617',
+        primaryDark: '#758b29',
+        background: '#f6f7f2',
+        surface: '#ffffff',
+        text: '#1c1d18',
+        textSecondary: '#555256',
+        textTertiary: '#8e8d85',
+        border: '#d4d6c9'
+      },
+      spacing: { sm: '8px', md: '16px', lg: '24px', xl: '32px' }
+    };
+
+    function App() {
+      const [user, setUser] = React.useState(null);
+      
+      return (
+        <div style={{minHeight:'100vh',background:THEME.colors.background,padding:THEME.spacing.xl}}>
+          {!user ? (
+            <div style={{maxWidth:'400px',margin:'100px auto',textAlign:'center'}}>
+              <h1 style={{color:THEME.colors.primary,marginBottom:THEME.spacing.lg}}>1PAC</h1>
+              <button onClick={() => setUser({name:'Demo User',role:'RESIDENTE'})} 
+                style={{padding:'12px 24px',background:THEME.colors.primary,color:'#151708',border:'none',borderRadius:'10px',cursor:'pointer',fontSize:'16px',fontWeight:'600'}}>
+                Ingresar (Demo)
+              </button>
+            </div>
+          ) : (
+            <div style={{maxWidth:'800px',margin:'0 auto'}}>
+              <div style={{background:THEME.colors.surface,padding:THEME.spacing.lg,borderRadius:'10px',marginBottom:THEME.spacing.xl,display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                <div>
+                  <h1 style={{margin:0,color:THEME.colors.text}}>1PAC</h1>
+                  <p style={{margin:'4px 0 0 0',color:THEME.colors.textTertiary}}>Bienvenido, {user.name}</p>
+                </div>
+                <button onClick={() => setUser(null)} style={{padding:'8px 16px',background:'#ff6b6b',color:'white',border:'none',borderRadius:'6px',cursor:'pointer'}}>
+                  Salir
+                </button>
+              </div>
+              <div style={{background:THEME.colors.surface,padding:THEME.spacing.lg,borderRadius:'10px',border:`1px solid ${THEME.colors.border}`}}>
+                <h2 style={{color:THEME.colors.text,marginBottom:THEME.spacing.md}}>Dashboard 1PAC</h2>
+                <p style={{color:THEME.colors.textTertiary}}>Sistema operativo. Próximamente: programación de tareas y reportería de cumplimiento.</p>
+                <div style={{marginTop:THEME.spacing.lg,padding:THEME.spacing.lg,background:'#f0f0e8',borderRadius:'8px',fontSize:'14px',color:THEME.colors.text}}>
+                  <strong>Estado:</strong> Estructura base lista ✓<br/>
+                  <strong>Próximas fases:</strong> Integración de datos, validación y dashboards
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

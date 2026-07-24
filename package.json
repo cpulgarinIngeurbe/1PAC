@@ -1,0 +1,14 @@
+{
+  "name": "1pac-ingeurbe",
+  "version": "1.0.0",
+  "description": "PAC - Sistema de reportería semanal de cumplimiento de obra",
+  "main": "public/index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 8080 --directory public",
+    "build": "node build.js"
+  },
+  "keywords": ["PAC", "obra", "reporting", "Ingeurbe"],
+  "author": "Ingeurbe",
+  "license": "MIT"
+}
