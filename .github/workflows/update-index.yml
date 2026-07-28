@@ -1,0 +1,65 @@
+name: Actualizar index.json
+
+on:
+  push:
+    paths:
+      - 'public/data/schedules/*.json'
+      - '!public/data/schedules/index.json'
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Regenerar index.json
+        run: |
+          cd public/data/schedules
+
+          # Crear archivo temporal
+          {
+            echo "["
+            first=true
+            for file in *.json; do
+              if [ "$file" != "index.json" ] && [ -f "$file" ]; then
+                if [ "$first" = false ]; then
+                  echo ","
+                fi
+                cat "$file"
+                first=false
+              fi
+            done
+            echo "]"
+          } > index.json.tmp && mv index.json.tmp index.json
+
+          echo "✓ index.json actualizado"
+          ls -lh *.json
+
+      - name: Commit y Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -f public/data/schedules/index.json
+          if git diff --cached --quiet; then
+            echo "✓ Sin cambios en index.json"
+          else
+            git commit -m "chore: Actualizar index.json automáticamente"
+            git push
+            echo "✓ index.json pusheado"
+          fi
+
+      - name: Disparar Deploy
+        if: success()
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/actions/workflows/deploy.yml/dispatches \
+            -d '{"ref":"main"}'
+        shell: bash

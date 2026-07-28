@@ -11,6 +11,9 @@ function App() {
 
   useEffect(() => {
     loadProgramaciones()
+    // Auto-refresh cada 10 segundos para detectar cambios
+    const interval = setInterval(loadProgramaciones, 10000)
+    return () => clearInterval(interval)
   }, [])
 
   const loadProgramaciones = async () => {
