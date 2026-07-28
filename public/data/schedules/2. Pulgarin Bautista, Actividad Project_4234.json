@@ -1,10 +1,10 @@
 {
   "nombre" : "2. Pulgarin Bautista, Actividad Project_4234",
   "archivo" : "2. Pulgarin Bautista, Actividad Project_4234.mpp",
-  "fecha" : "2026-07-28T14:24:43.595079296",
+  "fecha" : "2026-07-28T14:26:35.964527813",
   "version" : 1,
   "tareas" : [ {
-    "id" : "24924480-24c0-4433-8ebb-9aef4fde8956",
+    "id" : "b22f6a47-6e91-4f22-9583-b4c333183010",
     "taskId" : 0,
     "parent" : null,
     "outline" : "0",
@@ -19,7 +19,7 @@
       "notes" : ""
     }
   }, {
-    "id" : "c329edea-f60b-4992-aec0-e9bf3af89d96",
+    "id" : "987a5f99-a022-4c00-aaf1-9b45b141ff41",
     "taskId" : 1,
     "parent" : 0,
     "outline" : "1",
@@ -34,7 +34,7 @@
       "notes" : ""
     }
   }, {
-    "id" : "6bba56fe-f7e7-40f3-b269-b5df51b74d0b",
+    "id" : "8494b5cd-9baa-4141-9129-e08edb6505f4",
     "taskId" : 2,
     "parent" : 1,
     "outline" : "1.1",
@@ -49,7 +49,7 @@
       "notes" : ""
     }
   }, {
-    "id" : "8a2ba9f3-390b-43a8-b201-746a9c2419d6",
+    "id" : "1862df28-e4b5-4fe0-970e-eb61845a7342",
     "taskId" : 3,
     "parent" : 1,
     "outline" : "1.2",
@@ -64,7 +64,7 @@
       "notes" : ""
     }
   }, {
-    "id" : "f1d81809-c73a-4d0d-ae64-9124f52ba682",
+    "id" : "aa21143b-9991-4124-b371-d446269aa20e",
     "taskId" : 4,
     "parent" : 1,
     "outline" : "1.3",
@@ -79,7 +79,7 @@
       "notes" : ""
     }
   }, {
-    "id" : "838c86db-e8b4-4c7c-b684-1dc11c73f355",
+    "id" : "9a23c5f5-5110-40e9-9227-efa6c2f3e5cd",
     "taskId" : 5,
     "parent" : 1,
     "outline" : "1.4",
@@ -94,7 +94,7 @@
       "notes" : ""
     }
   }, {
-    "id" : "48da4172-16fe-4063-9e72-99cbba76c6e6",
+    "id" : "82c13173-633b-48bf-9a12-d635175b98fb",
     "taskId" : 6,
     "parent" : 1,
     "outline" : "1.5",
@@ -109,7 +109,7 @@
       "notes" : ""
     }
   }, {
-    "id" : "6f4aaa5c-9c5b-4593-a825-43ef90746f12",
+    "id" : "11c24853-32e4-47c8-a3f2-9412e0a59064",
     "taskId" : 7,
     "parent" : 1,
     "outline" : "1.6",
@@ -124,7 +124,7 @@
       "notes" : ""
     }
   }, {
-    "id" : "965c11bd-2ff0-4cf4-9a57-7d09e1718d88",
+    "id" : "e66184f7-8fdb-4e77-8b5b-8628a9db61f0",
     "taskId" : 8,
     "parent" : 1,
     "outline" : "1.7",
@@ -139,7 +139,7 @@
       "notes" : ""
     }
   }, {
-    "id" : "8dc957c1-5349-4ba3-aa50-e3a7c7ec9f16",
+    "id" : "a78108bd-277f-4f4e-91fb-64a3cd87365e",
     "taskId" : 9,
     "parent" : 1,
     "outline" : "1.8",
@@ -154,7 +154,7 @@
       "notes" : ""
     }
   }, {
-    "id" : "a3035810-4b5b-49aa-a93c-50ed5f1dd367",
+    "id" : "36887ab2-eb8f-430d-bbab-6f3d9bcc7d3a",
     "taskId" : 10,
     "parent" : 1,
     "outline" : "1.9",
@@ -169,7 +169,7 @@
       "notes" : ""
     }
   }, {
-    "id" : "2e286888-7f0b-4a49-b2c7-c097d971b7cf",
+    "id" : "3938dba6-675a-4e9c-a0e9-f2097aad1229",
     "taskId" : 11,
     "parent" : 1,
     "outline" : "1.10",
@@ -184,7 +184,7 @@
       "notes" : ""
     }
   }, {
-    "id" : "a18281e6-ad31-4798-a223-6751b6f1ea39",
+    "id" : "aaa712c5-0a2e-49f4-9363-b58f97650d92",
     "taskId" : 12,
     "parent" : 1,
     "outline" : "1.11",
@@ -199,7 +199,7 @@
       "notes" : ""
     }
   }, {
-    "id" : "0a46f16f-0010-4f43-862f-4b1a4bd3e843",
+    "id" : "b4eb9068-afb2-4781-99e1-a66fc474240f",
     "taskId" : 13,
     "parent" : 1,
     "outline" : "1.12",
@@ -216,68 +216,68 @@
   } ],
   "predecesoras" : [ {
     "id" : "p1",
-    "tareaId" : "c9f56d09-4d78-47ba-afc3-b91425a502a3",
-    "predecesora" : "c9a0e7b3-d890-40ce-b6e3-7534b64e543e",
+    "tareaId" : "efd265a6-6e9f-465c-99b4-79c79c73bef7",
+    "predecesora" : "9b619ee3-705a-4592-bb72-bf9a87bcdebd",
     "tipo" : "FS",
     "lag" : 0
   }, {
     "id" : "p2",
-    "tareaId" : "f3e0bdf2-c02c-48de-854d-8095e67b760f",
-    "predecesora" : "2ca9d863-81b8-434d-98d5-393e2c097ca3",
+    "tareaId" : "bf772050-b44d-42a0-84fb-6ea0ebf47990",
+    "predecesora" : "6b38fb0d-097d-44ef-b8fc-f0dfd4570be0",
     "tipo" : "FS",
     "lag" : 0
   }, {
     "id" : "p3",
-    "tareaId" : "64da8258-a4f2-4614-a301-c0aec36d4d6f",
-    "predecesora" : "c1179157-cabc-4563-899e-bce5f34425f6",
+    "tareaId" : "c5f58def-4fc4-4dc2-8039-2b09da77d2b4",
+    "predecesora" : "8dc62868-5663-48c1-bc05-424e88e0f86b",
     "tipo" : "FS",
     "lag" : 0
   }, {
     "id" : "p4",
-    "tareaId" : "86a9ac2b-4f21-4397-b709-adf0ac37f5dd",
-    "predecesora" : "98b30032-a446-4f2f-9adb-cdeb5786ee96",
+    "tareaId" : "26966770-740a-4e9a-9c61-3264fc5907f2",
+    "predecesora" : "d07d0d5f-ddea-494b-bcf7-cb0c2a940bf8",
     "tipo" : "FS",
     "lag" : 0
   }, {
     "id" : "p5",
-    "tareaId" : "7f766bbe-e785-4fbd-ab5a-3a6969ea18c8",
-    "predecesora" : "bf5291a5-3d32-49cb-b979-1a58a93c0879",
+    "tareaId" : "1d6dffaf-af12-4ad4-ad73-d4e6525ce7b6",
+    "predecesora" : "86e754c5-b41b-4b49-a53d-975bddf3803d",
     "tipo" : "FS",
     "lag" : 0
   }, {
     "id" : "p6",
-    "tareaId" : "ac27774f-e626-4bfe-9e61-d3a5159a5ccd",
-    "predecesora" : "f8efd31e-6278-4f64-b724-43f9777c9e0b",
+    "tareaId" : "01791f90-d888-400d-bd95-7f17ac57e71f",
+    "predecesora" : "532a1e93-5434-434b-80cf-d8ddd9d1159c",
     "tipo" : "FS",
     "lag" : 0
   }, {
     "id" : "p7",
-    "tareaId" : "c334febb-874f-49b7-bd35-c18c3002acf4",
-    "predecesora" : "56e1346d-b91c-4c93-aa53-b789ccb5f17d",
+    "tareaId" : "a096a152-9c56-4f7d-984b-bbd7cfc3841b",
+    "predecesora" : "a4b22acb-479a-4e3b-88a0-25b59616c522",
     "tipo" : "FS",
     "lag" : 0
   }, {
     "id" : "p8",
-    "tareaId" : "87db54fe-4618-4e0d-9853-559fbd28287a",
-    "predecesora" : "3ee3e12a-083f-45ac-97bb-4932d5f1a0a0",
+    "tareaId" : "6dc923ba-c2e2-4683-b036-727ffcc06032",
+    "predecesora" : "58e94363-f485-4860-a5e9-cb92581740f1",
     "tipo" : "FS",
     "lag" : 0
   }, {
     "id" : "p9",
-    "tareaId" : "609d1cb5-2d3e-4a29-a14e-76b296ebfafd",
-    "predecesora" : "06b4643f-61f8-45d6-8625-6b5bc3071ca9",
+    "tareaId" : "2c92ebfe-506c-4f00-8d7b-5843c96e81ba",
+    "predecesora" : "ae8fa691-cc5c-40f0-995e-3a2868b2c0f1",
     "tipo" : "FS",
     "lag" : 0
   }, {
     "id" : "p10",
-    "tareaId" : "eb87a142-597e-440b-90db-3401c51a74fb",
-    "predecesora" : "4a4d0b73-15d8-487d-bb00-d3160e627506",
+    "tareaId" : "a6173393-280e-4c62-a36b-ed71c3734fee",
+    "predecesora" : "b1aa08a7-70ce-4fb6-8f22-47212a8d67c2",
     "tipo" : "FS",
     "lag" : 0
   }, {
     "id" : "p11",
-    "tareaId" : "65cbcb8f-3274-49d3-a42e-946413a7163f",
-    "predecesora" : "650b5ace-ca41-46d7-85dc-f39dc08d5abb",
+    "tareaId" : "e874bb60-f9ae-4033-85b2-9dcd92c692bd",
+    "predecesora" : "517ea9e2-a64c-4ba9-b3a4-6c09e18477ea",
     "tipo" : "FS",
     "lag" : 0
   } ]
