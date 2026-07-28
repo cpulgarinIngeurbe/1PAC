@@ -51,20 +51,22 @@ jobs:
       - name: Crear index.json
         run: |
           cd public/data/schedules
-          # Crear array con todos los JSONs
-          echo "[" > index.json
-          first=true
-          for file in *.json; do
-            if [ "$file" != "index.json" ] && [ -f "$file" ]; then
-              if [ "$first" = false ]; then
-                echo "," >> index.json
+          # Crear array con todos los JSONs (excepto index.json)
+          {
+            echo "["
+            first=true
+            for file in *.json; do
+              if [ "$file" != "index.json" ] && [ -f "$file" ]; then
+                if [ "$first" = false ]; then
+                  echo ","
+                fi
+                cat "$file"
+                first=false
               fi
-              cat "$file" >> index.json
-              first=false
-            fi
-          done
-          echo "]" >> index.json
-          echo "✓ Creado index.json"
+            done
+            echo "]"
+          } > index.json.tmp && mv index.json.tmp index.json
+          echo "✓ Creado index.json con $(ls *.json 2>/dev/null | grep -v index.json | wc -l) programaciones"
 
       - name: Commit cambios
         run: |
