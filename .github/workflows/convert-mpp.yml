@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'incoming/*.mpp'
+      - 'incoming/*.zip'
     branches:
       - main
   workflow_dispatch:
@@ -29,6 +30,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      - name: Descomprimir archivos .zip
+        run: |
+          cd incoming
+          for zipfile in *.zip; do
+            if [ -f "$zipfile" ]; then
+              echo "Descomprimiendo: $zipfile"
+              unzip -o "$zipfile"
+              rm "$zipfile"
+            fi
+          done
+          cd ..
+          echo "✓ Archivos descomprimidos"
 
       - name: Build conversor
         run: |
