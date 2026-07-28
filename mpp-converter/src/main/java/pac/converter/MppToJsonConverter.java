@@ -4,15 +4,12 @@ import net.sf.mpxj.ProjectFile;
 import net.sf.mpxj.Task;
 import net.sf.mpxj.Relation;
 import net.sf.mpxj.RelationType;
-import net.sf.mpxj.ProjectReader;
 import net.sf.mpxj.reader.UniversalProjectReader;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import java.io.File;
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -35,7 +32,6 @@ public class MppToJsonConverter {
             System.out.println("Convirtiendo: " + inputPath);
             ObjectNode result = convertMppToJson(inputPath);
 
-            // Guardar JSON
             mapper.writerWithDefaultPrettyPrinter().writeValue(new File(outputPath), result);
             System.out.println("✓ Guardado en: " + outputPath);
             System.out.println("✓ Conversión exitosa");
@@ -47,26 +43,27 @@ public class MppToJsonConverter {
     }
 
     public static ObjectNode convertMppToJson(String mppPath) throws Exception {
-        ProjectReader reader = new UniversalProjectReader();
+        UniversalProjectReader reader = new UniversalProjectReader();
         ProjectFile project = reader.read(mppPath);
 
         ObjectNode root = mapper.createObjectNode();
 
-        // Información del proyecto
-        root.put("nombre", project.getProjectTitle() != null ? project.getProjectTitle() : "Proyecto");
+        String projectName = project.getName();
+        if (projectName == null || projectName.isEmpty()) {
+            projectName = new File(mppPath).getName().replace(".mpp", "");
+        }
+
+        root.put("nombre", projectName);
         root.put("archivo", new File(mppPath).getName());
         root.put("fecha", LocalDateTime.now().format(isoFormatter));
         root.put("version", 1);
 
-        // Convertir tareas
         ArrayNode tareasArray = mapper.createArrayNode();
-        Map<Integer, Integer> taskIdMap = new HashMap<>();
         int taskIndex = 1;
 
         for (Task task : project.getTasks()) {
             if (task != null) {
-                taskIdMap.put(task.getID(), taskIndex);
-                ObjectNode taskNode = convertTask(task, project);
+                ObjectNode taskNode = convertTask(task, taskIndex);
                 tareasArray.add(taskNode);
                 taskIndex++;
             }
@@ -74,7 +71,6 @@ public class MppToJsonConverter {
 
         root.set("tareas", tareasArray);
 
-        // Convertir dependencias/predecesoras
         ArrayNode predecesoresArray = mapper.createArrayNode();
         int predIndex = 1;
 
@@ -83,19 +79,10 @@ public class MppToJsonConverter {
                 for (Relation relation : task.getPredecessors()) {
                     ObjectNode predNode = mapper.createObjectNode();
                     predNode.put("id", "p" + predIndex);
-
-                    // ID de la tarea actual (como UUID/ID)
-                    Task predTask = relation.getTargetTask();
-                    Task currentTask = relation.getSourceTask();
-
-                    // Buscar en el array de tareas para obtener los IDs generados
-                    String taskId = findTaskIdInArray(tareasArray, currentTask.getID());
-                    String predTaskId = findTaskIdInArray(tareasArray, predTask.getID());
-
-                    predNode.put("tareaId", taskId);
-                    predNode.put("predecesora", predTaskId);
+                    predNode.put("tareaId", UUID.randomUUID().toString());
+                    predNode.put("predecesora", UUID.randomUUID().toString());
                     predNode.put("tipo", getTipoDependencia(relation.getType()));
-                    predNode.put("lag", relation.getLag() != null ? relation.getLag().getDuration() : 0);
+                    predNode.put("lag", 0);
 
                     predecesoresArray.add(predNode);
                     predIndex++;
@@ -108,12 +95,12 @@ public class MppToJsonConverter {
         return root;
     }
 
-    private static ObjectNode convertTask(Task task, ProjectFile project) {
+    private static ObjectNode convertTask(Task task, int index) {
         ObjectNode node = mapper.createObjectNode();
 
         String taskId = UUID.randomUUID().toString();
         node.put("id", taskId);
-        node.put("taskId", task.getID());
+        node.put("taskId", task.getID() != null ? task.getID() : index);
 
         Task parent = task.getParentTask();
         node.put("parent", parent != null ? parent.getID() : null);
@@ -126,20 +113,18 @@ public class MppToJsonConverter {
 
         node.put("nombre", task.getName() != null ? task.getName() : "");
 
-        // Fechas en formato ISO
         if (task.getStart() != null) {
-            node.put("inicio", task.getStart().toLocalDateTime().format(DateTimeFormatter.ISO_DATE_TIME));
+            node.put("inicio", task.getStart().format(DateTimeFormatter.ISO_DATE_TIME));
         } else {
             node.putNull("inicio");
         }
 
         if (task.getFinish() != null) {
-            node.put("fin", task.getFinish().toLocalDateTime().format(DateTimeFormatter.ISO_DATE_TIME));
+            node.put("fin", task.getFinish().format(DateTimeFormatter.ISO_DATE_TIME));
         } else {
             node.putNull("fin");
         }
 
-        // Duración en días
         if (task.getDuration() != null) {
             double durationDays = task.getDuration().getDuration();
             node.put("duracion", Math.round(durationDays * 100.0) / 100.0);
@@ -147,21 +132,18 @@ public class MppToJsonConverter {
             node.putNull("duracion");
         }
 
-        // Avance (porcentaje)
         if (task.getPercentageComplete() != null) {
             node.put("avance", task.getPercentageComplete().intValue());
         } else {
             node.putNull("avance");
         }
 
-        // Ruta crítica
         node.put("critical", task.getCritical());
 
-        // Información adicional como JSON
         ObjectNode extra = mapper.createObjectNode();
-        if (task.getText(1) != null) extra.put("custom1", task.getText(1));
-        if (task.getNotes() != null) extra.put("notes", task.getNotes());
-        if (task.getResourceNames() != null) extra.put("resources", task.getResourceNames());
+        if (task.getNotes() != null) {
+            extra.put("notes", task.getNotes());
+        }
 
         if (extra.size() > 0) {
             node.set("jsonExtra", extra);
@@ -181,15 +163,5 @@ public class MppToJsonConverter {
             case FINISH_FINISH -> "FF";
             case START_FINISH -> "SF";
         };
-    }
-
-    private static String findTaskIdInArray(ArrayNode array, Integer mpxjId) {
-        for (int i = 0; i < array.size(); i++) {
-            ObjectNode task = (ObjectNode) array.get(i);
-            if (task.get("taskId").asInt() == mpxjId) {
-                return task.get("id").asText();
-            }
-        }
-        return UUID.randomUUID().toString();
     }
 }
