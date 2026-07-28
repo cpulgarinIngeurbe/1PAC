@@ -48,11 +48,7 @@ public class MppToJsonConverter {
 
         ObjectNode root = mapper.createObjectNode();
 
-        String projectName = project.getName();
-        if (projectName == null || projectName.isEmpty()) {
-            projectName = new File(mppPath).getName().replace(".mpp", "");
-        }
-
+        String projectName = new File(mppPath).getName().replace(".mpp", "");
         root.put("nombre", projectName);
         root.put("archivo", new File(mppPath).getName());
         root.put("fecha", LocalDateTime.now().format(isoFormatter));
