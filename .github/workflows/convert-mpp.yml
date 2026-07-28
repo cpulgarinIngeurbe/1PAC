@@ -80,3 +80,10 @@ jobs:
             git push
             echo "✓ Cambios pusheados"
           fi
+
+      - name: Disparar Deploy
+        if: success()
+        run: |
+          gh workflow run deploy.yml -r main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
