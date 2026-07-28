@@ -1,0 +1,83 @@
+name: Convertir .mpp a JSON
+
+on:
+  push:
+    paths:
+      - 'incoming/*.mpp'
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build conversor
+        run: |
+          cd mpp-converter
+          mvn clean package -q
+
+      - name: Crear carpeta de salida
+        run: mkdir -p public/data/schedules
+
+      - name: Convertir archivos .mpp
+        run: |
+          for file in incoming/*.mpp; do
+            if [ -f "$file" ]; then
+              filename=$(basename "$file" .mpp)
+              echo "Convirtiendo: $filename"
+              java -jar mpp-converter/target/mpp-converter.jar "$file" "public/data/schedules/$filename.json"
+            fi
+          done
+
+      - name: Crear index.json
+        run: |
+          cd public/data/schedules
+          if [ -f "*.json" ]; then
+            echo "Generando index.json..."
+            node << 'EOF'
+            const fs = require('fs');
+            const path = require('path');
+
+            const files = fs.readdirSync('.')
+              .filter(f => f.endsWith('.json') && f !== 'index.json')
+              .map(f => {
+                const data = JSON.parse(fs.readFileSync(f, 'utf8'));
+                return data;
+              });
+
+            fs.writeFileSync('index.json', JSON.stringify(files, null, 2));
+            console.log(`✓ Creado index.json con ${files.length} programación(es)`);
+            EOF
+          fi
+
+      - name: Commit cambios
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add public/data/schedules/*.json
+          if git diff --cached --quiet; then
+            echo "✓ Sin cambios para commitear"
+          else
+            git commit -m "chore: Actualizar programaciones convertidas desde .mpp"
+            git push
+            echo "✓ Cambios pusheados"
+          fi
