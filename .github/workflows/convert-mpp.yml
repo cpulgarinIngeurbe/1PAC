@@ -51,23 +51,20 @@ jobs:
       - name: Crear index.json
         run: |
           cd public/data/schedules
-          if [ -f "*.json" ]; then
-            echo "Generando index.json..."
-            node << 'EOF'
-            const fs = require('fs');
-            const path = require('path');
-
-            const files = fs.readdirSync('.')
-              .filter(f => f.endsWith('.json') && f !== 'index.json')
-              .map(f => {
-                const data = JSON.parse(fs.readFileSync(f, 'utf8'));
-                return data;
-              });
-
-            fs.writeFileSync('index.json', JSON.stringify(files, null, 2));
-            console.log(`✓ Creado index.json con ${files.length} programación(es)`);
-            EOF
-          fi
+          # Crear array con todos los JSONs
+          echo "[" > index.json
+          first=true
+          for file in *.json; do
+            if [ "$file" != "index.json" ] && [ -f "$file" ]; then
+              if [ "$first" = false ]; then
+                echo "," >> index.json
+              fi
+              cat "$file" >> index.json
+              first=false
+            fi
+          done
+          echo "]" >> index.json
+          echo "✓ Creado index.json"
 
       - name: Commit cambios
         run: |
