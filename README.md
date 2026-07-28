@@ -1,18 +1,6 @@
 # PAC - Visualizador de Programaciones
 
-**Plataforma de gestión colaborativa de contratistas de obra**
-
-Este es el MVP (Producto Mínimo Viable) de PAC, diseñado para demostrar la viabilidad técnica de visualizar programaciones de Microsoft Project (.mpp) en una aplicación web moderna.
-
-## 🎯 Objetivo del MVP
-
-Responder: **¿Es posible visualizar un .mpp con calidad comercial sin backend propio?**
-
-✅ Árbol jerárquico expandible  
-✅ Diagrama de Gantt interactivo  
-✅ Panel de detalles de tareas  
-✅ Ruta crítica marcada  
-✅ 100% React + TypeScript + TailwindCSS  
+Visualizador web para explorar programaciones de Microsoft Project (.mpp) con interfaz moderna.
 
 ## 🚀 Inicio Rápido
 
@@ -23,67 +11,64 @@ npm install --legacy-peer-deps
 # Desarrollo
 npm run dev
 
-# Build
+# Build para producción
 npm run build
 ```
 
-Abre `http://localhost:3000`
+## 📤 ¿Cómo usar?
 
-## 🏗️ Arquitectura
+1. **Abre la aplicación** (http://localhost:3000)
+2. **Sube un archivo .mpp o JSON** con tu programación
+3. **Explora** el árbol de tareas y el Gantt interactivo
+4. **Haz click** en cualquier tarea para ver detalles
 
-**Frontend:** React 18 + Vite + TypeScript + TailwindCSS  
-**Datos:** JSON en `/data/schedules/` (GitHub como BD)  
-**Hosting:** GitHub Pages  
-**CI/CD:** GitHub Actions (próximo: conversor .mpp → JSON)  
+## 📋 Formatos soportados
 
-## 📊 Características
-
-- **Árbol de tareas:** Expandible, searchable, con iconografía
-- **Gantt:** SVG nativo, barras de progreso, ruta crítica, línea de hoy
-- **Detalles:** Panel lateral con info completa de tarea seleccionada
-- **Responsive:** Optimizado para 1920 a 1280px y tablets
-- **Animaciones:** Suaves con Framer Motion
-- **Color:** #A3C610 (verde corporativo Ingeurbe)
-
-## 📁 Estructura
-
-```
-src/
-├── components/       # UI reutilizable
-│   ├── Button, Card, Drawer, TreeView, GanttChart
-├── pages/           # Pantalla principal
-├── services/        # Lógica de datos
-├── types/           # TypeScript
-└── styles/          # CSS global
-data/schedules/      # JSON de programaciones
-```
-
-## 📈 Ejemplo de JSON
-
+### JSON (Recomendado - para visualizar ahora)
 ```json
 {
-  "nombre": "Proyecto Torre 1",
+  "nombre": "Mi Proyecto",
   "tareas": [
     {
       "id": "1",
       "taskId": 1,
-      "nombre": "Proyecto Torre 1",
+      "nombre": "Tarea 1",
       "inicio": "2024-08-01",
-      "fin": "2025-02-28",
+      "fin": "2024-08-15",
       "outlineLevel": 1,
-      "avance": 0,
+      "avance": 50,
       "critical": false
     }
   ]
 }
 ```
 
-## 🔄 Próximas Fases
+### .mpp (próximo paso - necesita conversor Java)
+El conversor Java con MPXJ transformará automáticamente .mpp → JSON.
 
-1. **Conversor Java:** .mpp → JSON automático (GitHub Actions)
-2. **Autenticación:** Por usuario/organización
-3. **Base de datos:** Supabase (cuando escale)
-4. **PAC Logic:** Cálculo de cumplimiento
+## ✨ Características
+
+- ✅ Árbol jerárquico expandible
+- ✅ Diagrama de Gantt interactivo
+- ✅ Panel de detalles de tareas
+- ✅ Ruta crítica marcada
+- ✅ Responsive design
+- ✅ Sin backend requerido
+
+## 🔧 Tech Stack
+
+- React 18 + TypeScript
+- Vite 5 (bundler)
+- TailwindCSS 3
+- Framer Motion (animaciones)
+- Lucide React (iconografía)
+
+## 📊 Próximos pasos
+
+1. Crear conversor Java (MPXJ) para .mpp → JSON
+2. Automatizar con GitHub Actions
+3. Agregar autenticación
+4. Integrar con Supabase (si es necesario)
 
 ## 📝 Licencia
 
