@@ -3,8 +3,7 @@ name: Actualizar index.json
 on:
   push:
     paths:
-      - 'public/data/schedules/*.json'
-      - '!public/data/schedules/index.json'
+      - 'public/data/schedules/**'
     branches:
       - main
 
