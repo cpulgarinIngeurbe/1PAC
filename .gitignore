@@ -13,6 +13,4 @@ build/
 
 # Datos generados (no versionados)
 data/
-public/data/
 raw/*.mpp
-*.mpp
