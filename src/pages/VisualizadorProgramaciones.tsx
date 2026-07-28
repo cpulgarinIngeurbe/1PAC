@@ -4,7 +4,6 @@ import { buildTaskTree, flattenTree } from '@/services/treeBuilder'
 import { TreeView } from '@/components/TreeView'
 import { GanttChart } from '@/components/GanttChart'
 import { Drawer } from '@/components/Drawer'
-import { Card, CardBody, CardHeader } from '@/components/Card'
 import { ChevronDown } from 'lucide-react'
 
 interface VisualizadorProgramacionesProps {
@@ -99,11 +98,11 @@ export function VisualizadorProgramaciones({ programaciones }: VisualizadorProgr
       <div className="flex flex-1 gap-4 p-4 overflow-hidden">
         {/* Left sidebar - Tree */}
         <div className="w-80 flex flex-col gap-4">
-          <Card>
-            <CardHeader>
+          <div className="rounded-xl bg-white shadow-soft border border-gray-100 overflow-y-auto">
+            <div className="px-6 py-4 border-b border-gray-100">
               <h2 className="text-lg font-bold text-gray-900">Tareas</h2>
-            </CardHeader>
-            <CardBody className="overflow-y-auto">
+            </div>
+            <div className="px-6 py-4 overflow-y-auto">
               <input
                 type="text"
                 placeholder="Buscar tareas..."
@@ -121,24 +120,24 @@ export function VisualizadorProgramaciones({ programaciones }: VisualizadorProgr
               ) : (
                 <div className="text-gray-500 text-sm">No hay tareas disponibles</div>
               )}
-            </CardBody>
-          </Card>
+            </div>
+          </div>
         </div>
 
         {/* Center - Gantt */}
         <div className="flex-1 flex flex-col gap-4">
-          <Card className="flex-1 flex flex-col">
-            <CardHeader>
+          <div className="flex-1 flex flex-col rounded-xl bg-white shadow-soft border border-gray-100">
+            <div className="px-6 py-4 border-b border-gray-100">
               <h2 className="text-lg font-bold text-gray-900">Diagrama de Gantt</h2>
-            </CardHeader>
-            <CardBody className="flex-1 overflow-hidden">
+            </div>
+            <div className="flex-1 overflow-hidden px-6 py-4">
               <GanttChart
                 tasks={flatTasks}
                 selectedId={selectedTask?.id}
                 onSelectTask={handleSelectTask}
               />
-            </CardBody>
-          </Card>
+            </div>
+          </div>
         </div>
 
         {/* Right sidebar - Details */}
