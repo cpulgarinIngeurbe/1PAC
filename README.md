@@ -14,23 +14,28 @@ Visualizador automático para explorar programaciones de Microsoft Project.
 4. Arrastra tu `.mpp`
 5. Click: **"Commit changes"**
 
-### **Paso 2️⃣: GitHub Actions convierte automáticamente**
+### **Paso 2️⃣: GitHub Actions convierte y deploya automáticamente**
 
-✅ Se ejecuta automáticamente
-- Detecta tu `.mpp` en `incoming/`
-- Conversor Java (MPXJ) lo transforma a JSON
-- Lo guarda en `/public/data/schedules/`
-- Commitea los cambios
+✅ Se ejecuta automáticamente:
+1. **Conversión**: Detecta tu `.mpp` → Convierte a JSON (MPXJ)
+2. **Indexación**: Actualiza `index.json` automáticamente
+3. **Deploy**: Despliega a GitHub Pages automáticamente
 
-⏱️ **Tiempo:** ~2-3 minutos
+⏱️ **Tiempo total:** ~2-3 minutos
 
-### **Paso 3️⃣: Abre la app y visualiza**
+### **Paso 3️⃣: Recarga y visualiza**
 
 1. Abre: https://cpulgarinIngeurbe.github.io/1PAC/
-2. **Recarga la página** (Ctrl+F5)
+2. **Recarga la página** (Ctrl+F5) después de 2-3 minutos
 3. Tu programación aparece automáticamente
-4. Click en el nombre para visualizar
-5. ¡Explora el Gantt! 📊
+4. ¡Explora el árbol jerárquico y Gantt! 📊
+
+### **Para eliminar una programación:**
+
+1. Ve a GitHub → `Code` → `public/data/schedules/`
+2. Elimina el archivo `.json` que quieras
+3. Commit automático → Deploy automático
+4. **Recarga la página** → Desaparece automáticamente
 
 ---
 
