@@ -1,14 +1,44 @@
 {
   "name": "1pac-ingeurbe",
   "version": "1.0.0",
-  "description": "PAC - Sistema de reportería semanal de cumplimiento de obra",
-  "main": "public/index.html",
+  "description": "PAC - Visualizador de Programaciones de Obra con Microsoft Project",
   "type": "module",
   "scripts": {
-    "dev": "python3 -m http.server 8080 --directory public",
-    "build": "node build.js"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .ts,.tsx",
+    "type-check": "tsc --noEmit"
   },
-  "keywords": ["PAC", "obra", "reporting", "Ingeurbe"],
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "framer-motion": "^11.0.0",
+    "lucide-react": "^0.390.0",
+    "zustand": "^4.4.0",
+    "react-router-dom": "^6.24.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
+    "@vitejs/plugin-react": "^4.3.0",
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.1",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.32",
+    "autoprefixer": "^10.4.16",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.0"
+  },
+  "keywords": [
+    "PAC",
+    "Gantt",
+    "Project Management",
+    "Microsoft Project",
+    "obra"
+  ],
   "author": "Ingeurbe",
   "license": "MIT"
 }
