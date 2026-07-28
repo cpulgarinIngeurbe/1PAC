@@ -13,10 +13,16 @@ function App() {
   const loadProgramaciones = async () => {
     try {
       setLoading(true)
-      const response = await fetch('/data/schedules/index.json')
+      const basePath = import.meta.env.BASE_URL
+      const url = `${basePath}data/schedules/index.json`
+      console.log('Loading from:', url)
+      const response = await fetch(url)
       if (response.ok) {
         const data = await response.json()
+        console.log('Loaded programaciones:', data)
         setProgramaciones(data)
+      } else {
+        console.error('Failed to load:', response.status)
       }
     } catch (error) {
       console.error('Error loading programaciones:', error)
