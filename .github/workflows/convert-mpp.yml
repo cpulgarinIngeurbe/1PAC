@@ -70,7 +70,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add public/data/schedules/*.json
+          git add -f public/data/schedules/*.json
           if git diff --cached --quiet; then
             echo "✓ Sin cambios para commitear"
           else
